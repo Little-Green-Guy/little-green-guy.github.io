@@ -1,0 +1,14 @@
+{
+  "name": "THE EYE",
+  "short_name": "THE EYE",
+  "start_url": "/theeye.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "description": "THE EYE",
+  "icons": [{
+      "src": "/theeye-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }]
+}
