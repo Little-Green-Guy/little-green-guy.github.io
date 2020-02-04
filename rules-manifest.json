@@ -1,0 +1,18 @@
+{
+  "name": "Rules of the Internet",
+  "short_name": "Rules",
+  "start_url": "/rules.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "description": "The Rules of the Internet.",
+  "icons": [{
+      "src": "/favicon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }, {
+      "src": "/favicon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }]
+}
