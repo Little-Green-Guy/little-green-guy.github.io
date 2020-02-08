@@ -1,0 +1,6 @@
+body {
+    background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    /* lmao u thought it's follow style guidelines*/
+    animation: move-you-gimp 5s ease infinite;
+    color: white;
+}
