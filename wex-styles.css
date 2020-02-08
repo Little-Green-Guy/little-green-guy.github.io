@@ -4,9 +4,18 @@
     100%{background-position:0% 50%}
 }
 
+@keyframes bad {
+    0%{color: black}
+    100%{color: white}
+}
+
 body {
     background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
     /* lmao u thought it's follow style guidelines*/
     animation: move-you-gimp 5s ease infinite;
     color: white;
+}
+
+pre {
+    animation: bad 4s infinite;
 }
