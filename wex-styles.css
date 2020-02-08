@@ -1,3 +1,9 @@
+@keyframes move-you-gimp {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
 body {
     background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
     /* lmao u thought it's follow style guidelines*/
