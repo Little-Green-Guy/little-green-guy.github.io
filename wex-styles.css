@@ -11,6 +11,7 @@
 }
 
 body {
+    height: 20px;
     background-image: repeating-linear-gradient(red, orange, yellow, green, blue, indigo, violet);
     /* lmao u thought it's follow style guidelines*/
     animation: move-you-gimp 0.5s infinite;
