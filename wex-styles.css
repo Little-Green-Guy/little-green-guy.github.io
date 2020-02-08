@@ -6,7 +6,8 @@
 
 @keyframes bad {
     0%{color: black}
-    100%{color: white}
+    50%{color: white}
+    100%{color: black}
 }
 
 body {
@@ -17,5 +18,5 @@ body {
 }
 
 pre {
-    animation: bad 4s infinite;
+    animation: bad 0.1s infinite;
 }
