@@ -11,10 +11,9 @@
 }
 
 body {
-    background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
+    background-image: repeating-linear-gradient(red, orange, yellow, green, blue, indigo, violet);
     /* lmao u thought it's follow style guidelines*/
     animation: move-you-gimp 5s infinite;
-    color: white;
 }
 
 pre {
