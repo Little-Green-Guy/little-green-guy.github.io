@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minecraft server - Blog (kinda)</title>
+	<meta name="description" content="Port forwarding, without port forwarding<">
+	
+	<link rel="stylesheet" type="text/css" href="blog.css">
+</head>
+
+<body>
+	<div id="nav">
+	<b>Green Guy's Blog (kinda)</b>&emsp;<a href="index.html">Home</a><hr>
+	</div>
+	<div id="main">
+	<h1>Hosting a Minecraft server</h1>
+	<h3>How to open services to the internet without access to the router</h3><br>
+	<h4>Intro</h4>
+	<p>For selfhosting a Minecraft server I'd recommend using Linux, maybe on an
+	old laptop or something. Alternatively you can use ur pc with windows but it
+	will make some hole	punching harder (or I won't be able to help much).</p>
+	
+	<h4>1. Actual port forwarding</h4>
+	<p>This is how real servers do it (really they aren't behind a nat with a
+	firewall so everything's forwarded for them). Its better, but is also a
+	security risk for a home network. How secure port forwarding is depends on
+	how secure what you are forwarding to is. Forwarding directly to Minecraft
+	might not be the best idea, as I don't trust Microsoft to be 100% on top of
+	possible holes in mc. Idk, it might be fine.<br>
+	Forwarding to a VPN like open VPN, and then connecting to the server from
+	the VPN would be better. Comes with its own risks - unless you do clever set
+	up, whoever you allow access to your VPN can access your local network.
+	Essentially they would be able to hack into your devices more easily because
+	you've invited them in. They will also be able to see files on nas
+	drives/windows shares if they aren't set up with passwords etc. They can
+	also use your internet for bad stuff like hacking or piracy and it will look
+	like it is you not them. You can block access to the wider internet more
+	easily to stop this tho iirc. If you go this route you can set openvpn on an
+	underpowered Linux machine like a raspberry pi. Idk how to do it on windows.
+	Also bear in mind that if you use a pi or other debain based operating
+	systems these are designed with long term security and stability in mind,
+	windows is not. So port forwarding to a VPN on a Linux box will be more
+	secure than windows or direct Minecraft.</p>
+	
+	<h4>2. Hole punching</h4>
+	<p>The main problem with port forwarding is setting it up - you need admin
+	access to your router. If you don't have this then we can work around this
+	using hole punching. This is when you talk to an external server and you use
+	them as a kindof proxy - so because you started talking to them first your
+	router allows it, and the server port forwards from them to you.<br>
+	Hole punching options include:<br>
+	Serveo.net, ngrok, commercial vpn, or hamachi, etc</p>
+	
+	<h4>2.1 serveo.net/ngrok</h4>
+	<p>serveo.net and ngrok both use SSH tunneling for hole punching, so I will
+	cover them together.<br>
+	I recommend serveo.net. its free, and easy (on Linux). You can probably use
+	PuTTY to do it on windows but idk how. Instructions for Linux on
+	<a href="https://serveo.net">https://serveo.net</a> (just change the ports
+	to 25565)<br>
+	Ngrok is easier for noobs as it has a client which you have to use, which is
+	probably also available for windows, but only allows one port forward
+	(serveo is probs unlimited), but that's probably enough for you.<br>
+	The downside of these is that the connections are temporary - you might lose
+	connection randomly (eg random spike in latency due to WiFi - Ethernet will
+	probably help). Every time you lose connection you will probably get a new
+	forwarding address. This is a pain for others connecting to your server, but
+	has slightly added security (maybe). Its also more secure if you keep half
+	an eye on incoming connections (easy with serveo/ngrok), and spot a new IP
+	when a new friend hasnt connected, you can quickly shut everything down
+	quickly. You could also run serveo on a low powered Linux box and forward it
+	to your computer which will be easier than trying to use putty.<br>
+	You can use these to either forward directly to Minecraft, or a VPN for
+	added security.</p>
+	
+	<h4>2.2 Commercial VPNs</h4>
+	<p>You can also use a paid VPN provider. Rather than tunneling people into
+	your network, this is just where you tunnel your connection to an external
+	server, and then they will act as a router and do some port forwarding for
+	you. Beware not all vpns support this, and it may cost quite a bit. Also
+	whenever you disconnect your VPN and reconnect you will probably get a new
+	IP and port. You will probably need to change Minecraft to use this port.</p>
+	
+	<h4>2.3 Hamachi</h4>
+	<p>Finally there is hamachi. I haven't used this, I don't know exactly how
+	it works, but it looks like a front end and probably does something similar
+	to the other methods described here. It may be easier, but also limiting
+	(paying for more than 5 people). Imo, hamachi sucks :p</p>
+	
+	<h4>2.3 2: electric boogaloo. A deeper dive into how Hamachi works, and how to replicate  and self-host thisyourself</h4>
+	<p>From what I can tell hamachi uses two techniques: a VPN and UDP hole punching.</p>
+	
+	<h4>2.3.2 UDP hole punching</h4>
+	<p>UDP hole punching is really cool, it uses an external server to set up a
+	connection, but then allows each 'peer' to talk to each other directly. It
+	also shows that when I was talking about hole punching in my previous
+	message I was actually getting my terminology mixed up.</p>
+
+	<h4>2.3.3 VPN - but a different way</h4>
+	<p>The other method is a VPN. This is when you connect to an external
+	hamachi VPN server, just like you would to nordvpn/express VPN, etc. However
+	there is a difference in how the VPN is configured. Normal vpns only allow
+	you to talk to the outside internet, whereas the hamachi VPN allows you to
+	talk to other 'peers' connecting to it, creating a 'virtual lan' or 'virtual
+	local network' of sorts. This is probably more secure than the other methods
+	I described, but if you do good configuration of one of my methods, this
+	method won't be more secure by much/at all.<br>
+	Its more secure than hole punching with serveo/ngrok directly to Minecraft
+	because you need a VPN connected with password authentication to join.
+	However if you port forward/hole punch a local openvpn server, then that
+	server is more secure because you are using certificates not passwords.
+	However whoever you give the certificate to can access all of your local
+	network.<br>
+	1. If you 100% trust who you give the cert to then boom a local openvpn is
+	more secure than hamachi<br>
+	But we can do better<br>
+	2. You can probably change openvpn to only allow connections to your
+	Minecraft server, or at least only the computer that hosts the Minecraft
+	server. Now you are in theory more secure than hamachi because they can only
+	access your computer (like hamachi) and they also need a cert (not just
+	password). However, idk how to do this and I'm not entirely sure its
+	possible.<br>
+	3. You connect the computer running your Minecraft server to the local VPN
+	you made (you can do this even of they're on the same computer), and then
+	allow your friends to connect, and have the openvpn server set up to only
+	allow communication between the virtual lan. This is the same as how the
+	hamachi server is set up, except its in your local network, and it requires
+	a cert, not password, so its more secure than hamachi.<br>
+	Note:<br>
+	All this 'more secure' is assuming that the VPN software is super secure and
+	the only way of comprising it is to have the password/have the certificate.
+	Of course this is not true, but VPN software is pretty secure and its one of
+	the better options to have port forwarded to the wider internet.</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+/* font */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+#nav {
+	padding: 5px 15%;
+}
+
+hr {
+	border: 1px solid lightgrey;
+}
+
+#main {
+    padding: 0% 20%;
+}
