@@ -110,22 +110,26 @@
 	However if you port forward/hole punch a local openvpn server, then that
 	server is more secure because you are using certificates not passwords.
 	However whoever you give the certificate to can access all of your local
-	network.<br>
-	1. If you 100% trust who you give the cert to then boom a local openvpn is
-	more secure than hamachi<br>
-	But we can do better<br>
-	2. You can probably change openvpn to only allow connections to your
+	network.
+	<ol>
+		<li>If you 100% trust who you give the cert to then boom a local openvpn is
+	more secure than hamachi</li>
+	</ol>
+	But we can do better
+	<ol start="2">
+		<li>You can probably change openvpn to only allow connections to your
 	Minecraft server, or at least only the computer that hosts the Minecraft
 	server. Now you are in theory more secure than hamachi because they can only
 	access your computer (like hamachi) and they also need a cert (not just
 	password). However, idk how to do this and I'm not entirely sure its
-	possible.<br>
-	3. You connect the computer running your Minecraft server to the local VPN
+	possible.</li>
+		<li>You connect the computer running your Minecraft server to the local VPN
 	you made (you can do this even of they're on the same computer), and then
 	allow your friends to connect, and have the openvpn server set up to only
 	allow communication between the virtual lan. This is the same as how the
 	hamachi server is set up, except its in your local network, and it requires
-	a cert, not password, so its more secure than hamachi.<br>
+	a cert, not password, so its more secure than hamachi.</li>
+	</ol>
 	Note:<br>
 	All this 'more secure' is assuming that the VPN software is super secure and
 	the only way of comprising it is to have the password/have the certificate.
