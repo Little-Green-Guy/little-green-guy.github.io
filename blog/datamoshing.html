@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Datamoshing - Blog (kinda)</title>
+	<meta name="description" content="how to do that cool video thing using avidemux 2.7.6">
+	
+	<link rel="stylesheet" type="text/css" href="blog.css" media="(prefers-color-scheme: light)">
+	<link rel="stylesheet" type="text/css" href="dark.css" media="(prefers-color-scheme: dark)">
+</head>
+
+<body>
+	<div id="nav">
+	<b>Green Guy's Blog (kinda)</b>&emsp;<a href="index.html">Home</a><hr>
+	</div>
+	<div id="main">
+	<h1>How to datamosh</h1><br>
+	<p>
+	<ol>
+	<li>download avidemux (im using version 2.7.6 installed using flathub)</li>
+	<li>open ur file</li>
+	<li>change vid output from copy to mpeg4 avc (x264)</li>
+	<li>press configure, go to frame tab</li>
+	<li>change max consecutive b frames to 0, then under i frames change gop size min to 0 and max to 9999</li>
+	<li>press ok, then save as a new video file.</li>
+	<li>close the current video, open the one you just saved.</li>
+	<li>change video output to copy</li>
+	<li>click the start of the timeline, press the up arrow to skip to next i frame</li>
+	<li>delete the frame by: starting selection (a button or ctrl+pgup), going allong one frame (right arrow) ending selection (b button or ctrl+pgdown) then deleting selection (del button)</li>
+	<li>repeat for all i frames (up arrow, ctrl+pgup, right arrow, ctrl+pgdown, del)</li>
+	</ol>
+	note: alternatively you can start from the beginning and at every jump cut you can delete that frame, whether it be a p frame or an i frame. this will give a better mosh. make sure u still get all the i frames
+	<ol start="12">
+	<li>save.</li>
+	<li>profit</li>
+	</ol>
+	</p>
+	</div>
+</body>
+</html>
