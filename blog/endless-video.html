@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Endless video - Blog (kinda)</title>
+	<meta name="description" content="how to make the duration of the webm keep increasing">
+	
+	<link rel="stylesheet" type="text/css" href="blog.css" media="(prefers-color-scheme: light)">
+	<link rel="stylesheet" type="text/css" href="dark.css" media="(prefers-color-scheme: dark)">
+</head>
+
+<body>
+	<div id="nav">
+	<b>Green Guy's Blog (kinda)</b>&emsp;<a href="index.html">Home</a><hr>
+	</div>
+	<div id="main">
+	<h1>How to create an endless WebM</h1><br>
+	<p>In short you need to edit the metadata of the webm and change it to 00:00.
+	There are probably multiple ways of doing this but the way I found that worked
+	for me was to use mkvinfo to find where the duration metadata is stored in the
+	hex for the webm then use a hexeditor to change it. This might possibly work
+	with other video formats, I haven't tried it. <a href="https://www.youtube.com/watch?v=5WqNs5r--h8">Original source.</a></p>
+	
+	<h4>Instructions</h4>
+	<p>
+	<ol>
+	<li>Have your webm file downloaded, a hex editor installed, and mkvinfo (a linux
+	cli tool) installed. (you can install this with the <code>mkvtoolnix</code> package
+	or similar.</li>
+	<li>run <code>mkvinfo -p video.webm | grep "Duration"</code> in the same directory
+	as the webm file</li>
+	<li>look for the offset at the end of the output (should start with 0x, for
+	example 0x141)</li>
+	<li>open the webm in a hex editor (eg gHex for a gui tool, or hexedit for a
+	cli tool)</li>
+	<li>move along two bytes (ie move past the 44 89)</li>
+	<li>overwrite the next 4 bytes with <code>84 3F 80 00</code> (depending on
+	your editor, once you're in the right place you should just be able to type
+	<code>843F8000</code></li>
+	<li>save you changes</li>
+	<li>the duration of your file is now set to zero, so depending on your video
+	player it will either show 00:00 or the duration will keep counting up until
+	it reaches the end of the video file.</li>
+	</ol>
+	</p>
+	
+	<h4>More information</h4>
+	<p><a href="https://www.youtube.com/watch?v=UxHQ7dW6M2s">This video</a> goes
+	into more detail including looking at the specification for mp4 and webm files
+	and using this to edit the duration (on the mp4 example it includes negative
+	and extremely long durations). Although I am struggling to change the duration
+	to exact values I want, by playing around with those last 3 bytes (3F 80 00)
+	I have been able to also produce extremely large durations and negative durations.</p>
+	</div>
+</body>
+</html>
