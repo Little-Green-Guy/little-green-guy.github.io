@@ -27,11 +27,11 @@
 	or similar.</li>
 	<li>run <code>mkvinfo -p video.webm | grep "Duration"</code> in the same directory
 	as the webm file</li>
-	<li>look for the offset at the end of the output (should start with 0x, for
-	example 0x141)</li>
+	<li>look for the offset at the end of the output (should start with <code>0x</code>,
+	for	example <code>0x141</code>)</li>
 	<li>open the webm in a hex editor (eg gHex for a gui tool, or hexedit for a
 	cli tool)</li>
-	<li>move along two bytes (ie move past the 44 89)</li>
+	<li>move along two bytes (ie move past the <code>44 89</code>)</li>
 	<li>overwrite the next 4 bytes with <code>84 3F 80 00</code> (depending on
 	your editor, once you're in the right place you should just be able to type
 	<code>843F8000</code></li>
@@ -47,8 +47,8 @@
 	into more detail including looking at the specification for mp4 and webm files
 	and using this to edit the duration (on the mp4 example it includes negative
 	and extremely long durations). Although I am struggling to change the duration
-	to exact values I want, by playing around with those 4 bytes (84 3F 80 00) I
-	have been able to also produce extremely large durations and negative durations.</p>
+	to exact values I want, by playing around with those 4 bytes (<code>84 3F 80 00</code>)
+	I have been able to also produce extremely large durations and negative durations.</p>
 	</div>
 </body>
 </html>
